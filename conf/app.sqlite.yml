@@ -1,0 +1,62 @@
+app:
+  name: powerdoc
+  version: 0.1.0
+server:
+  port: 8000
+  address: 0.0.0.0
+logging:
+  level: 5  #0 panic 0 fatal 1 error 2 warn 3 info 4 debug 5 trace 6
+  report-caller: false
+#databases:
+#  multiple data source
+#  maxIndle: 10
+#  maxOpen: 50
+#  maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
+#  showSQL: true
+databases:
+  - dsn: root:@tcp(database:3306)/test?parseTime=true
+    maxIndle: 10
+    maxOpen: 50
+    maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
+    showSQL: true
+  - dialect: 'sqlite3'
+    dsn: ':memory:'
+    maxIndle: 10
+    maxOpen: 50
+    maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
+    showSQL: true
+openapi:
+  spec:
+    title: Your service name
+    desc: api docs
+    contact:
+      name: your-name
+      email: your-mail
+      url: https://exmaple.org
+    license:
+      name: test
+      url: test
+    version: 1.0
+  tags:
+    - name: Users
+      desc: "User resource"
+    - name: Orders
+      desc: "Order resource"
+  ui:
+    api: /apidocs.json
+    dist: /Users/liwei/MyWorkspace/swagger-ui/dist/
+    entrypoint: /apidocs/
+mail:
+  - imap-addr: imap.example.com:993
+    smtp-addr: smtp.example.com:465
+    tls: true
+    username: your-mail
+    password: your-mail-pwd
+apollo:
+  enable: false
+  conf:
+    appId: 51ac3835-b78b-4217-bbbb-ba34470e4363
+    cluster: default
+    namespaces:
+      - application
+    ip: 10.3.30.15:8080

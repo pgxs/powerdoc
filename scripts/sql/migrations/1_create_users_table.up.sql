@@ -1,6 +1,6 @@
 CREATE TABLE users
 (
-    uid               INTEGER PRIMARY KEY AUTO_INCREMENT,
+    uid               INTEGER PRIMARY KEY /*!40101 AUTO_INCREMENT */,
     username          char(50),
     password          char(100),
     name              char(30),

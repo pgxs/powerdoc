@@ -20,6 +20,10 @@ type UserDO struct {
 	DeletedAt      *time.Time
 }
 
+func (ud UserDO) TableName() string {
+	return "users"
+}
+
 //UserDTO  data transfer object for user service
 type UserDTO struct {
 }

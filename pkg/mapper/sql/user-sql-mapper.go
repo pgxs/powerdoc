@@ -1,11 +1,12 @@
 package sql
 
 import (
-	"github.com/jinzhu/gorm"
-	"pgxs.io/chassis"
 	"sync"
 
+	"github.com/jinzhu/gorm"
+	"pgxs.io/chassis"
 	logx "pgxs.io/chassis/log"
+
 	"pgxs.io/powerdoc/pkg/types"
 )
 
@@ -26,7 +27,7 @@ func UserSqlMapperInstance() *UserSqlMapper {
 		var err error
 		userSqlMapper.db, err = chassis.DB()
 		if err != nil {
-			userSqlMapper.log.Error(err)
+			userSqlMapper.log.Fatal(err)
 		}
 	})
 	return userSqlMapper

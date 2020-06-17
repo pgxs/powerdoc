@@ -1,6 +1,7 @@
 app:
   name: powerdoc
   version: 0.1.0
+  env: local
 server:
   port: 8000
   address: 0.0.0.0
@@ -14,7 +15,7 @@ logging:
 #  maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
 #  showSQL: true
 databases:
-  - dsn: root:@tcp(database:3306)/test?parseTime=true
+  - dsn: root:@tcp(database:3306)/powerdoc?parseTime=true
     maxIndle: 10
     maxOpen: 50
     maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.

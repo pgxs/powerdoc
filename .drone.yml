@@ -6,6 +6,7 @@ steps:
     image: golang
     commands:
       - sleep 25
+      - cd ../ && go get github.com/go-bindata/go-bindata/...
       - make migrate-all
 services:
   - name: mysql

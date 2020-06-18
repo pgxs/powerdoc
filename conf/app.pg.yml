@@ -8,9 +8,16 @@ server:
 logging:
   level: 5  #0 panic 0 fatal 1 error 2 warn 3 info 4 debug 5 trace 6
   report-caller: false
+#databases:
+#  multiple data source
+#  maxIndle: 10
+#  maxOpen: 50
+#  maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
+#  showSQL: true
 databases:
-  - dsn: root:@tcp(database:3306)/powerdoc?parseTime=true
-    dialect: mysql
+  #- dsn: "host=database port=5432 user=postgres password=123456 dbname=powerdoc sslmode=disable"
+  - dsn: "postgres://postgres:123456@127.0.0.1:5432/powerdoc?sslmode=disable"
+    dialect: 'postgres'
     maxIndle: 10
     maxOpen: 50
     maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.
@@ -42,3 +49,11 @@ mail:
     tls: true
     username: your-mail
     password: your-mail-pwd
+apollo:
+  enable: false
+  conf:
+    appId: 51ac3835-b78b-4217-bbbb-ba34470e4363
+    cluster: default
+    namespaces:
+      - application
+    ip: 10.3.30.15:8080

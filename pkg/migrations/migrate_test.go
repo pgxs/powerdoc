@@ -2,13 +2,13 @@ package migrations
 
 import (
 	"os"
-
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"pgxs.io/chassis"
 	cfg "pgxs.io/powerdoc/pkg/config"
 
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/database/sqlite3"
 )
 
@@ -24,18 +24,25 @@ func TestMain(m *testing.M) {
 }
 func setup() error {
 	cfg.Load()
+	//
+	//if config.Databases()[0].Dialect == "postgres" {
+	//	args, err := pq.ParseURL(config.Databases()[0].DSN)
+	//	if err != nil {
+	//		panic(err)
+	//		os.Exit(-1)
+	//	}
+	//	config.Databases()[0].DSN = args
+	//}
 	//config.LoadFromEnvFile()
 	return nil
 }
 func Test_ImportData(t *testing.T) {
 	err := Run()
 	assert.NoError(t, err)
-	if !chassis.EnvIsProd() {
-		count := 0
-		db, err := chassis.DB()
-		assert.NoError(t, err)
-		db.Table("users").Count(&count)
-		assert.NotEmpty(t, count)
-		assert.Equal(t, 1, count)
-	}
+	count := 0
+	db, err := chassis.DB()
+	assert.NoError(t, err)
+	db.Table("users").Count(&count)
+	assert.NotEmpty(t, count)
+	assert.Equal(t, 1, count)
 }

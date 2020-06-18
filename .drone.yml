@@ -16,7 +16,7 @@ services:
       - 3306
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-      MYSQL_DATABASE: test
+      MYSQL_DATABASE: powerdoc
   - name: postgres
     image: postgres:10-alpine
     ports:

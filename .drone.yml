@@ -7,7 +7,7 @@ steps:
     commands:
       - sleep 25
       - cd ../ && go get github.com/go-bindata/go-bindata/...
-      - make migrate-all
+      - cd powerdoc && make migrate-all
 services:
   - name: mysql
     image: mysql:8

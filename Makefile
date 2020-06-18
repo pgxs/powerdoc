@@ -2,9 +2,9 @@
 test:
 	POWERDOC_CONF=${PWD}/conf/app.yml go test -v ./... -count=1
 
-migrate-all: migrate-sqlite migrate-mysql
-
-sqlite-migrate: sqlite-bindata sqlite-migrations
+migrate-all: migrate-sqlite migrate-mysql migrate-postgres
+	@ehco "Run all migrations"
+migrate-sqlite: sqlite-bindata sqlite-migrations
 	@echo "Run migrations to sqlite"
 sqlite-bindata:
 	@echo "sqlite-bindata"
@@ -22,7 +22,7 @@ mysql-migrations:
 	@POWERDOC_CONF=$(PWD)/conf/app.yml \
 	PG_TEST_DATA_FILE=$(PWD)/scripts/sql/test/data.sql \
 	go test -v ./pkg/migrations/. -count=1
-postgres-migrate: postgres-bindata postgre-migrations
+migrate-postgres: postgres-bindata postgre-migrations
 postgres-bindata:
 	@echo "bindata"
 	@cd scripts/sql/migrations/pg && go-bindata -pkg pgMigrations -o ../../../../pkg/migrations/pg/bindata.go .

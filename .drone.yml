@@ -6,6 +6,7 @@ steps:
     image: golang
     commands:
       - sleep 25
+      - go mod download
       - cd ../ && go get github.com/go-bindata/go-bindata/...
       - cd src && make migrate-all
 services:

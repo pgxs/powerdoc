@@ -3,7 +3,7 @@ test:
 	POWERDOC_CONF=${PWD}/conf/app.yml go test -v ./... -count=1
 
 migrate-all: migrate-sqlite migrate-mysql migrate-postgres
-	@ehco "Run all migrations"
+	@echo "all migrations success"
 migrate-sqlite: sqlite-bindata sqlite-migrations
 	@echo "Run migrations to sqlite"
 sqlite-bindata:

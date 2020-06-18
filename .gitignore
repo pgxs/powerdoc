@@ -17,4 +17,3 @@
 .idea
 *.s3db
 
-bindata.go

@@ -1,10 +1,13 @@
 package sql
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os"
-	"pgxs.io/powerdoc/pkg/config"
 	"testing"
+
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/stretchr/testify/assert"
+
+	"pgxs.io/powerdoc/pkg/config"
 )
 
 func TestMain(m *testing.M) {

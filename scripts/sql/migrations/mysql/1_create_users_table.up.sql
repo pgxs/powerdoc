@@ -2,7 +2,7 @@ CREATE TABLE users
 (
     uid               int PRIMARY KEY AUTO_INCREMENT,
     username          char(50),
-    password          char(100),
+    password          char(128),
     name              char(30),
     email             char(100),
     last_logged_in_at datetime,

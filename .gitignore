@@ -17,3 +17,4 @@
 .idea
 *.s3db
 
+conf/app.local.yml

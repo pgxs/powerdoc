@@ -2,6 +2,11 @@
 test:
 	POWERDOC_CONF=${PWD}/conf/app.yml go test -v ./... -count=1
 
+migrate-local: sqlite-bindata
+	@POWERDOC_CONF=$(PWD)/conf/app.local.yml \
+	PG_TEST_DATA_FILE=$(PWD)/scripts/sql/test/data.sql \
+	go test -v pgxs.io/powerdoc/pkg/migrations/. -count=1
+
 migrate-all: migrate-sqlite migrate-mysql migrate-postgres
 	@echo "all migrations success"
 migrate-sqlite: sqlite-bindata sqlite-migrations
@@ -12,7 +17,7 @@ sqlite-bindata:
 sqlite-migrations:
 	@POWERDOC_CONF=$(PWD)/conf/app.sqlite.yml \
 	PG_TEST_DATA_FILE=$(PWD)/scripts/sql/test/data.sql \
-	go test -v ./pkg/migrations/. -count=1
+	go test -v pgxs.io/powerdoc/pkg/migrations/. -count=1
 
 migrate-mysql: mysql-bindata mysql-migrations
 mysql-bindata:

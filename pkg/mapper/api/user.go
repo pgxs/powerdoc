@@ -8,4 +8,5 @@ import (
 type UserMapper interface {
 	FindByLoginName(loginName string) *types.UserDO
 	FindUsersByKeywords(keywords string, pageIndex, pageSize int)
+	CreateUser(user *types.UserDO) error
 }

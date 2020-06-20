@@ -43,3 +43,9 @@ func (usm *UserSqlMapper) FindByLoginName(loginName string) *types.UserDO {
 	}
 	return &user
 }
+func (usm *UserSqlMapper) FindUsersByKeywords(keywords string, pageIndex, pageSize int) {
+
+}
+func (usm *UserSqlMapper) CreateUser(user *types.UserDO) error {
+	return nil
+}
